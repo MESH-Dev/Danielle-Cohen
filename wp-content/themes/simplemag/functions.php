@@ -139,13 +139,9 @@ function ti_meta_data(){
 	global $ti_option;
 	
 	// Category Name
-	if ( is_single() ) {
-		if ( $ti_option['single_post_cat_name'] == true ) {
-			echo '<span class="entry-category">'; the_category(', '); echo '</span>';
-		}
-	} else {
-		echo '<span class="entry-category">'; the_category(', '); echo '</span>';
-	}
+	echo "<span class='authormeta'>By "; 
+	the_author(); 
+ 	echo ", </span>"; 
 	
 	// Date
 	$publish_date = '<time class="entry-date updated" datetime="' . get_the_time( 'c' ) . '" itemprop="datePublished">' . get_the_time( get_option( 'date_format' ) ) . '</time>';
@@ -195,6 +191,7 @@ function ti_rating_calc() {
 	}
 }
 add_filter( 'ti_score_total', 'ti_rating_calc' );
+
 
 
 

@@ -454,7 +454,7 @@ if (!class_exists('Redux_Framework_sample_config')) {
                         'line-height' => false,
                         'font-size' => false,
                         'default'   => array(
-                            'font-family'   => 'Oswald',
+                            'font-family'   => 'azo-sans-web',
                             'font-weight'   => 'normal',
                         ),
                         'output' => array('h1, h2, h3, h4, h5, h6, .main-menu a, .secondary-menu a, .widget_pages, .widget_categories, .widget_nav_menu, .tagline, .sub-title, .entry-meta, .entry-note, .read-more, #submit, .ltr .single .entry-content > p:first-of-type:first-letter, input#s, .single-author-box .vcard, .comment-author, .comment-meta, .comment-reply-link, #respond label, .copyright, #wp-calendar tbody, .latest-reviews i, .score-box .total'),
@@ -505,7 +505,7 @@ if (!class_exists('Redux_Framework_sample_config')) {
                         'line-height' => false,
                         'default'   => array(
                             'font-size'     => '16px',
-                            'font-family'   => 'Lato',
+                            'font-family'   => 'azo-sans-web',
                             'font-weight'   => 'normal',
                         ),
                         'output' => array('body'),

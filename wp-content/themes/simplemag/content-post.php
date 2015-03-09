@@ -39,21 +39,15 @@
     </figure>
 
     <header class="entry-header">
-        <div class="entry-meta">
-           <?php ti_meta_data(); ?>
-        </div>
+        
         <h2 class="entry-title" itemprop="headline">
             <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
         </h2>
+        <div class="entry-meta">
+           <?php ti_meta_data(); ?>
+        </div>
         <?php global $ti_option; ?>
-        <?php if( $ti_option['site_author_name'] == 1 ) { ?>
-        <span class="vcard author">
-            <?php _e( 'By','themetext' ); ?>
-            <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" class="url fn n" rel="author">
-                <?php the_author_meta( 'display_name' ); ?>
-            </a>
-        </span>
-        <?php } ?>
+ 
     </header>
 
     <?php if( $ti_option['site_wide_excerpt'] == 1 ) { // Enable/Disable the excerpt site wide ?>

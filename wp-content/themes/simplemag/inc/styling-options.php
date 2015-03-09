@@ -20,8 +20,10 @@ global $ti_option;
 @media only screen and (min-width: 751px) {#gallery-carousel,#gallery-carousel .gallery-item{height:<?php echo $ti_option['site_carousel_height'] ?>px;}}
 <?php if ( $ti_option['custom_css'] != '' ) { ?>
 /* Custom CSS */
-<?php echo $ti_option['custom_css']; ?>
+<?php //echo $ti_option['custom_css']; ?>
 <?php } ?>
 </style>
 <?php } ?>
-<?php add_action( 'wp_head', 'ti_custom_styling' ); ?>
+<?php //add_action( 'wp_head', 'ti_custom_styling' ); ?>
+
+

@@ -18,15 +18,8 @@ $single_sidebar = get_post_meta( $post->ID, 'post_sidebar', true );
 
             <header class="wrapper entry-header page-header">
                 <div class="entry-meta">
-                    <?php if( $ti_option['single_author_name'] == 1 ) { ?>
-                        <span class="vcard author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
-                            <span><?php _e( 'By','themetext' ); ?></span>
-                            <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" class="url fn n" rel="author" itemprop="url">
-                                <span itemprop="name"><?php the_author_meta( 'display_name' ); ?></span>
-                            </a>
-                        </span>
-                    <?php } ?>
-                    <?php ti_meta_data(); ?>
+ 
+                    <span class='authormeta'>By <?php the_author(); ?> / </span><?php  $publish_date = '<time class="entry-date updated" datetime="' . get_the_time( 'c' ) . '" itemprop="datePublished">' . get_the_time( get_option( 'date_format' ) ) . '</time>'; echo $publish_date;?>
                 </div>
                 
                 <div class="title-with-sep single-title">
@@ -34,32 +27,6 @@ $single_sidebar = get_post_meta( $post->ID, 'post_sidebar', true );
                 </div>
             </header>
 
-            <?php
-            // Output media only on first page if the post have pagination
-            if ( $paged == 1 || $page == 1 ) {
-                // Output media from every post by Full Width option
-                if ( $ti_option['single_media_position'] == 'useperpost' && get_post_meta( $post->ID, 'post_media_position', true ) == 'media_full_width' || $ti_option['single_media_position'] == 'fullwidth' ){
-                ?>
-                <div class="entry-media">
-                    <?php
-                    if ( ! get_post_format() ): // Standard
-                        get_template_part( 'formats/format', 'standard' );
-                    elseif ( 'gallery' == get_post_format() ): // Gallery
-                        get_template_part( 'formats/format', 'gallery' );
-                    elseif ( 'video' == get_post_format() ): // Video
-                        get_template_part( 'formats/format', 'video' );
-                    elseif ( 'audio' == get_post_format() ): // Audio
-                        get_template_part( 'formats/format', 'audio' );
-                    endif;
-                    ?>
-                </div>
-                <?php } else { ?>
-                    <?php if ( 'gallery' == get_post_format() ) { ?>
-                    <div class="entry-media">
-                        <?php get_template_part( 'formats/format', 'gallery' ); ?>
-                    </div>
-                <?php } ?>
-            <?php } } ?>
 
 
             <div class="wrapper">
@@ -69,12 +36,7 @@ $single_sidebar = get_post_meta( $post->ID, 'post_sidebar', true );
                     <div class="grid-8 column-1">
                 <?php } ?>
 
-                    <?php
-                    // Output media only on first page if the post have pagination
-                    if ( $paged == 1 || $page == 1 ) {
-                        // Output media from every post by Above The Content option
-                        if ( $ti_option['single_media_position'] == 'useperpost' && get_post_meta( $post->ID, 'post_media_position', true ) == 'media_above_content' || $ti_option['single_media_position'] == 'abovecontent' ) {
-                        ?>
+         
                         <div class="entry-media">
                             <?php 
                             if ( ! get_post_format() ): // Standard
@@ -86,7 +48,6 @@ $single_sidebar = get_post_meta( $post->ID, 'post_sidebar', true );
                             endif;
                             ?>
                         </div>
-                    <?php } } ?>
 
                     <?php 
                     // Ad Unit

@@ -64,7 +64,7 @@ global $ti_option;
                   );
                   ?>
 
-                  <div class="grids entries">
+                  <div class="grids entries top-post">
 
               	<?php
                   if ( $ti_featured_posts->have_posts() ) :
@@ -83,13 +83,16 @@ global $ti_option;
                                   </a>
                               </figure>
 
-                              <header class="entry-header">
-                                  <div class="entry-meta">
-                                     <?php ti_meta_data(); ?>
-                                  </div>
+                              <header class="entry-header ">
+                                  
                                   <h2 class="entry-title">
                                       <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                   </h2>
+                                  <div class="entry-meta">
+                                     <?php ti_meta_data(); ?>
+                                  </div>
+                                   <div class="entry-read-more">
+                                     <a href="<?php the_permalink();?>">Read More</a>                                  </div>
                                   <?php
                                   if( $ti_option['site_author_name'] == 1 ) { ?>
                                   
