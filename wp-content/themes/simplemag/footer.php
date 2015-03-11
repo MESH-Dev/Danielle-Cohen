@@ -10,43 +10,72 @@ global $ti_option;
 
         <footer id="footer" class="no-print animated" role="contentinfo" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
 
-        	<?php if ( $ti_option['footer_image_ad']['url'] == true || ! empty ( $ti_option['footer_code_ad'] ) ) { ?>
-            <div class="advertisement">
-                <div class="wrapper">
-        			<?php
-                    $footer_ad = $ti_option['footer_image_ad'];
-                    // Image Ad
-                    if ( $footer_ad['url'] == true ) { ?>
-                        <a href="<?php echo $footer_ad['url']; ?>" rel="nofollow" target="_blank">
-                            <img src="<?php echo $footer_ad['url']; ?>" width="<?php echo $footer_ad['width']; ?>" height="<?php echo $footer_ad['height']; ?>" alt="<?php _e( 'Advertisement', 'themetext' ); ?>" />
-                        </a>
-                    <?php 
-        			// Code Ad
-                    } elseif( $ti_option['footer_code_ad'] == true ) {
-                        echo $ti_option['footer_code_ad'];
-                    } ?>
+          <div class="wrapper">
+            <div class="grids">
+              <div class="grid-12">
+                <h2 class="insta-header">Soundcake on Instagram</h2>
+                <div id="instafeed">
+              </div>
+              </div>
+              <div class="grid-4 column-1">
+                <div id="search-2" class="widget widget_search">
+                  <form method="get" id="searchform" action="http://localhost/dc/" role="search">
+                  	<input type="text" name="s" id="s" value="Search" onfocus="if(this.value=='Search')this.value='';" onblur="if(this.value=='')this.value='Search';">
+                      <button type="submit">
+                      	<i class="icomoon-search"></i>
+                      </button>
+                  </form>
                 </div>
-            </div><!-- .advertisment -->
-            <?php } ?>
-
-            <?php get_sidebar( 'footer' ); // Output the footer sidebars ?>
-
-            <div class="copyright">
-                <div class="wrapper">
-                	<div class="grids">
-                        <div class="grid-10">
-                            <?php echo $ti_option['copyright_text']; ?>
-                        </div>
-                        <div class="grid-2">
-                            <a href="#" class="back-top"><?php _e( 'Back to top', 'themetext' ); ?> <i class="icomoon-chevron-up"></i></a>
-                        </div>
-                    </div>
-                </div>
+              </div>
+              <div class="grid-4 column-2">
+                <ul class="social-icons">
+                  <li><i class="fa fa-envelope"></i></li>
+                  <li><i class="fa fa-facebook"></i></li>
+                  <li><i class="fa fa-twitter"></i></li>
+                  <li><i class="fa fa-tumblr"></i></li>
+                  <li><i class="fa fa-instagram"></i></li>
+                  <li><i class="fa fa-pinterest"></i></li>
+                </ul>
+              </div>
+              <div class="grid-4 column-3">
+              </div>
             </div>
-            
+          </div>
+
         </footer><!-- #footer -->
+
+        <div class="soundbar" style="background-image: url('<?php echo get_template_directory_uri() ?>/images/DaniCohen_BackgroundImage.jpg');">
+          <div class="wrapper">
+            <div class="grids">
+              <div class="grid-4">
+                <div class="artist-info">
+                  <span class="artist-info-song">Song Name</span> | <span class="artist-info-artist">Artist</span>
+                </div>
+              </div>
+              <div class="grid-4">
+                <div class="controls">
+                  <div class="backward control">
+                    <i class="fa fa-backward"></i>
+                  </div>
+                  <div class="play control">
+                    <i class="fa fa-play"></i>
+                  </div>
+                  <div class="forward control">
+                    <i class="fa fa-forward"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-4">
+                <div class="soundcloud">
+                  <i class="fa fa-soundcloud"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </div><!-- .site-content -->
 </section><!-- #site -->
+
 <?php wp_footer(); ?>
 </body>
 </html>

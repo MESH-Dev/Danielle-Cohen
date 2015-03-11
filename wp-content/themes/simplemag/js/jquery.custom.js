@@ -8,7 +8,26 @@ jQuery(document).ready(function($) {
 
 	$('#header-container').height(h);
 
-	if (window.location.pathname.length > 4) {
+	var playing = false;
+
+	SC.stream("/tracks/293", function(sound){
+		SC.sound = sound;
+	});
+
+	$('.play').click(function() {
+		if (playing == false) {
+			SC.sound.play();
+			playing = true;
+		} else {
+			SC.sound.pause();
+			playing = false;
+		}
+		$(this).find('i').toggleClass('fa-play fa-pause')
+	});
+
+	var fullPath = window.location.pathname + window.location.search + window.location.hash;
+
+	if (fullPath != "/") {
 		$('#header-container').css('margin-top', -600);
 	}
 	else {

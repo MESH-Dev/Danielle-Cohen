@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Featured Posts
  * Page Composer Section
@@ -10,21 +10,18 @@ global $ti_option;
 ?>
 
 <section class="wrapper home-section latest-reviews">
-            		
-	<?php if( get_sub_field( 'reviews_main_title' ) ) { ?>
-    <header class="section-header">
-        <div class="title-with-sep">
-            <h2 class="title"><?php the_sub_field( 'reviews_main_title' ); ?></h2>
+
+
+    <header class="entry-header page-header">
+        <div class="title-with-sep page-title">
+            <h1 class="entry-title">Reviews</h1>
         </div>
-        <?php if( get_sub_field( 'reviews_sub_title' ) ) { ?>
-        <span class="sub-title"><?php the_sub_field( 'reviews_sub_title' ); ?></span>
-        <?php } ?>
     </header>
-    <?php } ?>
-    
-    
+
+
+
     <?php
-    /** 
+    /**
      * Posts with reviews.
 	 * Display posts only if Rating is enabled
     **/
@@ -40,29 +37,31 @@ global $ti_option;
     ?>
 
     <?php if ( $ti_latest_reviews->have_posts() ) : ?>
-    
-        <div class="grids entries">
-           
-    		<?php while ( $ti_latest_reviews->have_posts() ) : $ti_latest_reviews->the_post(); ?>
+
+        <div class="grids">
+
+          <div class="grid-8 column-1">
+
+            <div class="grids grid-layout entries">
+
+            <?php while ( $ti_latest_reviews->have_posts() ) : $ti_latest_reviews->the_post(); ?>
 
                 <article <?php post_class("grid-4"); ?>>
-                
+
                     <figure class="entry-image">
                         <a href="<?php the_permalink(); ?>">
-                            <?php 
+                            <?php
                             if ( has_post_thumbnail() ) {
                                 the_post_thumbnail( 'rectangle-size' );
                             } elseif( first_post_image() ) { // Set the first image from the editor
                                 echo '<img src="' . first_post_image() . '" class="wp-post-image" alt="' . get_the_title() . '" />';
                             } ?>
                         </a>
-                        
+
                         <?php $show_total = apply_filters( 'ti_score_total', '' ); // Call total score calculation function ?>
-                        <div class="score-line" style="width:<?php echo number_format( $show_total, 1, '', '' ); ?>%;">
-                            <span><i><?php echo number_format( $show_total, 1, '.', '' ); ?></i></span>
-                        </div>
+
                     </figure>
-                    
+
                     <header class="entry-header">
                         <div class="entry-meta">
                            <?php ti_meta_data(); ?>
@@ -79,27 +78,33 @@ global $ti_option;
                         </span>
                         <?php } ?>
                     </header>
-                    
+
                     <?php if ( get_sub_field( 'reviews_excerpt' ) == 'enable' ) { ?>
                     <div class="entry-summary">
                         <?php the_excerpt(); ?>
                     </div>
                     <?php } ?>
-                        
-                </article>
-            
-            <?php endwhile; ?>
-            
-    		<?php wp_reset_postdata(); ?>
-            
-         </div>
-        
+
+                  </article>
+
+                <?php endwhile; ?>
+
+            <?php wp_reset_postdata(); ?>
+
+            </div>
+
+        </div>
+
+        <?php get_sidebar(); ?>
+
+       </div>
+
     <?php else: ?>
-      
+
         <p class="message">
             <?php _e( 'There are no reviews yet', 'themetext' ); ?>
         </p>
-        
+
     <?php endif; ?>
 
 </section><!-- Featured Posts -->

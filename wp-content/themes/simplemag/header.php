@@ -23,11 +23,33 @@
 <script src="//use.typekit.net/ehy7eux.js"></script>
 <script>try{Typekit.load();}catch(e){}</script>
 
+<script src="//connect.soundcloud.com/sdk.js"></script>
+<script>
+  SC.initialize({
+    client_id: "efd7a64f945397770d49ad6723c47f45",
+    redirect_uri: "http://example.com/callback.html",
+  });
+</script>
+
+<script type="text/javascript" src="<?php echo get_template_directory_uri() ?>/js/instafeed.min.js"></script>
+
+<script type="text/javascript">
+    var feed = new Instafeed({
+        get: 'user',
+        userId: 39766280,
+        accessToken: '19403516.22cb2c4.048292c6e5ca4eb39a2ff4ef448cfc91',
+        limit: 6,
+        template: '<div class="insta-container"><a href="{{link}}"><img src="{{image}}" /></a></div>'
+    });
+    feed.run();
+</script>
+
 <link href='http://fonts.googleapis.com/css?family=Noticia+Text:400,400italic,700italic' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 </head>
 
-<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
+<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage" style="background-image: url('<?php echo get_template_directory_uri() ?>/images/lightpaperfibers.png'); background-repeat: repeat;">
 
     <div id="pageslide" class="st-menu st-effect">
     	<a href="#" id="close-pageslide"><i class="icomoon-remove-sign"></i></a>
@@ -118,8 +140,8 @@
 
                   <ul id="menu-main-menu">
                     <li class="menu-item menu-item-type-taxonomy menu-item-object-category sub-menu-two-columns link-arrow">
-                      <a href="<?php echo get_permalink(get_page_by_title('Homepage')); ?>"><img src="<?php echo get_template_directory_uri() ?>/images/DaniCohen_icon_home.png" /></a><br/>
-                      <a href="<?php echo get_permalink(get_page_by_title('Homepage')); ?>"><h3>Home</h3></a>
+                      <a href="<?php echo home_url(); ?>"><img src="<?php echo get_template_directory_uri() ?>/images/DaniCohen_icon_home.png" /></a><br/>
+                      <a href="<?php echo home_url(); ?>"><h3>Home</h3></a>
                     </li>
                     <li class="menu-item menu-item-type-taxonomy menu-item-object-category sub-menu-two-columns link-arrow">
                       <a href="<?php echo get_permalink(get_page_by_title('Reviews')); ?>"><img src="<?php echo get_template_directory_uri() ?>/images/DaniCohen_icon_reviews.png" /></a><br/>
