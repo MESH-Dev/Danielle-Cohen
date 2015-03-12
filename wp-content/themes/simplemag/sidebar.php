@@ -17,11 +17,24 @@ if ( $ti_option['site_sidebar_fixed'] == true ) { $sidebar_fixed = ' sidebar-fix
                 dynamic_sidebar( 'sidebar-2' );
             }
         // Output sidebar for homepage, categories and posts
-        } else { 
+        } else {
             if ( is_active_sidebar( 'sidebar-1' ) ) {
                 dynamic_sidebar( 'sidebar-1' );
             }
         }
         ?>
+        <div id="tags-2" class="widget widget_categories">
+          <?php
+            $tags = get_tags();
+            if ($tags) {
+              echo "<h3>Categories</h3>";
+              echo "<ul>";
+              foreach ($tags as $tag) {
+                echo '<li><a href="' . get_tag_link( $tag->term_id ) . '" title="' . sprintf( __( "View all posts in %s" ), $tag->name ) . '" ' . '>' . $tag->name.'</a></li>';
+              }
+              echo "</ul>";
+            }
+          ?>
+        </div>
     </aside><!-- .sidebar -->
 </div>

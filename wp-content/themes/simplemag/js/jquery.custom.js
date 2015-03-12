@@ -8,6 +8,8 @@ jQuery(document).ready(function($) {
 
 	$('#header-container').height(h);
 
+	/* Soundbar */
+
 	var playing = false;
 
 	SC.stream("/tracks/293", function(sound){
@@ -28,10 +30,10 @@ jQuery(document).ready(function($) {
 	var fullPath = window.location.pathname + window.location.search + window.location.hash;
 
 	if (fullPath != "/") {
-		$('#header-container').css('margin-top', -600);
+		$('#header-container').css('margin-top', -620);
 	}
 	else {
-
+		$('.soundbar').hide();
 		$(window).scroll(sticky_relocate);
 	}
 
@@ -44,13 +46,16 @@ jQuery(document).ready(function($) {
 
 			if (scrolled) {
 				scrolled = false;
-				$('#header-container').css('margin-top', -600);
+				$('#header-container').css('margin-top', -620);
 				$('html, body').animate({
 					scrollTop: 0
 				}, 0);
+				$('.soundbar').fadeIn();
 			}
 		}
 	}
+
+	/* add hover on current menu item */
 
 	/* Nav Menu */
 	$(function(){

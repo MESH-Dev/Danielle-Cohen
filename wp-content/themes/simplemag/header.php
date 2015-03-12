@@ -39,7 +39,7 @@
         userId: 39766280,
         accessToken: '19403516.22cb2c4.048292c6e5ca4eb39a2ff4ef448cfc91',
         limit: 6,
-        template: '<div class="insta-container"><a href="{{link}}"><img src="{{image}}" /></a></div>'
+        template: '<div class="insta-container"><a href="{{link}}" target="_blank"><img src="{{image}}" /></a></div>'
     });
     feed.run();
 </script>
@@ -141,23 +141,23 @@
                   <ul id="menu-main-menu">
                     <li class="menu-item menu-item-type-taxonomy menu-item-object-category sub-menu-two-columns link-arrow">
                       <a href="<?php echo home_url(); ?>"><img src="<?php echo get_template_directory_uri() ?>/images/DaniCohen_icon_home.png" /></a><br/>
-                      <a href="<?php echo home_url(); ?>"><h3>Home</h3></a>
+                      <a href="<?php echo home_url(); ?>"><h3 <?php if(is_home()) { ?>class="current"<?php } ?>>Home</h3></a>
                     </li>
                     <li class="menu-item menu-item-type-taxonomy menu-item-object-category sub-menu-two-columns link-arrow">
                       <a href="<?php echo get_permalink(get_page_by_title('Reviews')); ?>"><img src="<?php echo get_template_directory_uri() ?>/images/DaniCohen_icon_reviews.png" /></a><br/>
-                      <a href="<?php echo get_permalink(get_page_by_title('Reviews')); ?>"><h3>Reviews</h3></a>
+                      <a href="<?php echo get_permalink(get_page_by_title('Reviews')); ?>"><h3 <?php if(is_page('Reviews')) { ?>class="current"<?php } ?>>Reviews</h3></a>
                     </li>
                     <li class="menu-item menu-item-type-taxonomy menu-item-object-category sub-menu-two-columns link-arrow">
-                      <a href="<?php echo get_permalink(get_page_by_title('Playlists')); ?>"><img src="<?php echo get_template_directory_uri() ?>/images/DaniCohen_icon_playlists.png" /></a><br/>
-                      <a href="<?php echo get_permalink(get_page_by_title('Playlists')); ?>"><h3>Playlists</h3></a>
+                      <a href="<?php echo get_bloginfo('url') ?>/tag/playlists"><img src="<?php echo get_template_directory_uri() ?>/images/DaniCohen_icon_playlists.png" /></a><br/>
+                      <a href="<?php echo get_bloginfo('url') ?>/tag/playlists"><h3 <?php if(is_page('Playlists')) { ?>class="current"<?php } ?>>Playlists</h3></a>
                     </li>
                     <li class="menu-item menu-item-type-taxonomy menu-item-object-category sub-menu-two-columns link-arrow">
                       <a href="<?php echo get_permalink(get_page_by_title('About')); ?>"><img src="<?php echo get_template_directory_uri() ?>/images/DaniCohen_icon_about.png" /></a><br/>
-                      <a href="<?php echo get_permalink(get_page_by_title('About')); ?>"><h3>About</h3></a>
+                      <a href="<?php echo get_permalink(get_page_by_title('About')); ?>"><h3 <?php if(is_page('About')) { ?>class="current"<?php } ?>>About</h3></a>
                     </li>
                     <li class="menu-item menu-item-type-taxonomy menu-item-object-category sub-menu-two-columns link-arrow">
                       <a href="<?php echo get_permalink(get_page_by_title('Contact')); ?>"><img src="<?php echo get_template_directory_uri() ?>/images/DaniCohen_icon_contact.png" /></a><br/>
-                      <a href="<?php echo get_permalink(get_page_by_title('Contact')); ?>"><h3>Contact</h3></a>
+                      <a href="<?php echo get_permalink(get_page_by_title('Contact')); ?>"><h3 <?php if(is_page('Contact')) { ?>class="current"<?php } ?>>Contact</h3></a>
                     </li>
                   </ul>
 

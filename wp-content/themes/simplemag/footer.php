@@ -12,11 +12,13 @@ global $ti_option;
 
           <div class="wrapper">
             <div class="grids">
-              <div class="grid-12">
+              <div class="grid-12 column-1">
                 <h2 class="insta-header">Soundcake on Instagram</h2>
                 <div id="instafeed">
+                </div>
               </div>
-              </div>
+            </div>
+            <div class="grids">
               <div class="grid-4 column-1">
                 <div id="search-2" class="widget widget_search">
                   <form method="get" id="searchform" action="http://localhost/dc/" role="search">
@@ -28,16 +30,19 @@ global $ti_option;
                 </div>
               </div>
               <div class="grid-4 column-2">
-                <ul class="social-icons">
-                  <li><i class="fa fa-envelope"></i></li>
-                  <li><i class="fa fa-facebook"></i></li>
-                  <li><i class="fa fa-twitter"></i></li>
-                  <li><i class="fa fa-tumblr"></i></li>
-                  <li><i class="fa fa-instagram"></i></li>
-                  <li><i class="fa fa-pinterest"></i></li>
-                </ul>
+                <div class="social-icons-container">
+                  <ul class="social-icons">
+                    <li><i class="fa fa-envelope"></i></li>
+                    <li><i class="fa fa-facebook"></i></li>
+                    <li><i class="fa fa-twitter"></i></li>
+                    <li><i class="fa fa-tumblr"></i></li>
+                    <li><i class="fa fa-instagram"></i></li>
+                    <li><i class="fa fa-pinterest"></i></li>
+                  </ul>
+                </div>
               </div>
               <div class="grid-4 column-3">
+                <div class="mesh">Site by <a href="http://meshfresh.com">MESH</a></div>
               </div>
             </div>
           </div>

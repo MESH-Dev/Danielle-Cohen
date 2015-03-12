@@ -12,7 +12,7 @@ include_once ( 'admin/tgm/tgm-init.php' );
 
 
 /* Content Width */
-if ( ! isset( $content_width ) ) 
+if ( ! isset( $content_width ) )
 	$content_width = 1050; /* pixels */
 
 
@@ -43,7 +43,7 @@ function ti_theme_setup() {
 
 	/* Theme localization */
 	load_theme_textdomain( 'themetext', get_template_directory() . '/languages' );
-	
+
 }
 add_action( 'after_setup_theme', 'ti_theme_setup' );
 
@@ -85,7 +85,7 @@ add_filter( 'wp_title', 'ti_wp_title', 10, 2 );
 function ti_body_classes( $classes ){
 
 	global $post, $ti_option;
-	
+
 	if ( !is_rtl() ) {
 		$classes[] = 'ltr';
 	}
@@ -94,10 +94,10 @@ function ti_body_classes( $classes ){
 	if ( is_page() ) {
 		$page_name = $post->post_name;
 		$classes[] = 'page-'.$page_name;
- 	} 
+ 	}
 
 	// If page have sidebar enabled
-	if ( get_field( 'page_sidebar' ) == 'page_sidebar_on' || get_field( 'comp_page_sidebar' ) == 'comp_sidebar_page' || get_field('category_slider', 'category_' . get_query_var('cat') ) == 'cat_slider_on' && get_field('category_slider_position', 'category_' . get_query_var('cat') ) == 'cat_slider_above' && get_field( 'category_sidebar', 'category_' . get_query_var('cat') ) == 'cat_sidebar_on' ) { 
+	if ( get_field( 'page_sidebar' ) == 'page_sidebar_on' || get_field( 'comp_page_sidebar' ) == 'comp_sidebar_page' || get_field('category_slider', 'category_' . get_query_var('cat') ) == 'cat_slider_on' && get_field('category_slider_position', 'category_' . get_query_var('cat') ) == 'cat_slider_above' && get_field( 'category_sidebar', 'category_' . get_query_var('cat') ) == 'cat_sidebar_on' ) {
 		$classes[] = 'with-sidebar';
 	}
 
@@ -135,23 +135,23 @@ function ti_top_strip_class(){
  * Posts Meta Data. Category and Date.
 **/
 function ti_meta_data(){
-	
+
 	global $ti_option;
-	
+
 	// Category Name
-	echo "<span class='authormeta'>By "; 
-	the_author(); 
- 	echo ", </span>"; 
-	
+	echo "<span class='authormeta'>By ";
+	the_author();
+ 	echo ", </span>";
+
 	// Date
 	$publish_date = '<time class="entry-date updated" datetime="' . get_the_time( 'c' ) . '" itemprop="datePublished">' . get_the_time( get_option( 'date_format' ) ) . '</time>';
-	
+
 	if ( is_home() || is_front_page() || is_page() ) {
 		if ( $ti_option['home_post_date'] == 1 ) {
     		echo $publish_date;
 		}
-	} 
-	if ( is_category() || is_tag() || is_author() ) {
+	}
+	if ( is_category() || is_tag() || is_author() || is_search() ) {
 		if ( $ti_option['archive_post_date'] == 1 ) {
     		echo $publish_date;
 		}
@@ -176,13 +176,13 @@ function ti_rating_calc() {
 
     $score_rows = get_field( 'rating_module' );
     $score = array();
-    
+
     // Loop through the scores
     if ( $score_rows ){
         foreach( $score_rows as $key => $row ){
             $score[$key] = $row['score_number'];
         }
-    
+
 	    $score_items = count( $score ); // Count the scores
 	    $score_sum = array_sum( $score ); // Get the scores summ
 	    $score_total = $score_sum / $score_items; // Get the score result
@@ -197,7 +197,7 @@ add_filter( 'ti_score_total', 'ti_rating_calc' );
 
 
 /**
- * Add Previous & Next links to a numbered link list 
+ * Add Previous & Next links to a numbered link list
  * of wp_link_pages() if single post is paged
  */
 function ti_wp_link_pages( $args ){
@@ -207,13 +207,13 @@ function ti_wp_link_pages( $args ){
     if ( !$args['next_or_number'] == 'next_and_number' ){
         return $args;
     }
-	
+
 	// Keep numbers for the main part
-    $args['next_or_number'] = 'number'; 
+    $args['next_or_number'] = 'number';
     if (!$more){
         return $args;
     }
-	
+
 	// If previous page exists
     if( $page-1 ){
         $args['before'] .= _wp_link_page($page-1) . $args['link_before']. $args['previouspagelink'] . $args['link_after'] . '</a>';
@@ -342,13 +342,13 @@ function first_post_image() {
 function register_theme_sidebars() {
 
 	if ( function_exists('register_sidebars') ) {
-		
+
 		// Sidebar for blog section of the site
 		register_sidebar(
 		   array(
 			'name' => __( 'Magazine', 'themetext' ),
 			'id' => 'sidebar-1',
-			'description'   => __( 'Sidebar for categories and single posts', 'themetext' ),		   
+			'description'   => __( 'Sidebar for categories and single posts', 'themetext' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget' => '</div>',
 			'before_title' => '<h3>',
@@ -358,7 +358,7 @@ function register_theme_sidebars() {
 
 		register_sidebar(
 		   array(
-			'name' => __( 'Pages', 'themetext' ),  
+			'name' => __( 'Pages', 'themetext' ),
 			'id' => 'sidebar-2',
 			'description'   => __( 'Sidebar for static pages', 'themetext' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -370,7 +370,7 @@ function register_theme_sidebars() {
 
 		register_sidebar(
 		   array(
-			'name' => __( 'Footer Area One', 'themetext' ),  
+			'name' => __( 'Footer Area One', 'themetext' ),
 			'id' => 'sidebar-3',
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget' => '</div>',
@@ -378,7 +378,7 @@ function register_theme_sidebars() {
 			'after_title' => '</h3>',
 		   )
 		);
-		
+
 		register_sidebar(
 		   array(
 			'name' => __( 'Footer Area Two', 'themetext' ),
@@ -389,10 +389,10 @@ function register_theme_sidebars() {
 			'after_title' => '</h3>',
 		   )
 		);
-		
+
 		register_sidebar(
 		   array(
-			'name' => __( 'Footer Area Three', 'themetext' ),  
+			'name' => __( 'Footer Area Three', 'themetext' ),
 			'id' => 'sidebar-5',
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget' => '</div>',

@@ -1,11 +1,11 @@
-<?php 
+<?php
 /**
  * The Template for displaying all single blog posts
  *
  * @package SimpleMag
  * @since 	SimpleMag 1.0
 **/
-get_header(); 
+get_header();
 global $ti_option;
 $single_sidebar = get_post_meta( $post->ID, 'post_sidebar', true );
 ?>
@@ -18,10 +18,10 @@ $single_sidebar = get_post_meta( $post->ID, 'post_sidebar', true );
 
             <header class="wrapper entry-header page-header">
                 <div class="entry-meta">
- 
+
                     <span class='authormeta'>By <?php the_author(); ?> / </span><?php  $publish_date = '<time class="entry-date updated" datetime="' . get_the_time( 'c' ) . '" itemprop="datePublished">' . get_the_time( get_option( 'date_format' ) ) . '</time>'; echo $publish_date;?>
                 </div>
-                
+
                 <div class="title-with-sep single-title">
                     <h1 class="entry-title" itemprop="headline"><?php the_title(); ?></h1>
                 </div>
@@ -36,9 +36,9 @@ $single_sidebar = get_post_meta( $post->ID, 'post_sidebar', true );
                     <div class="grid-8 column-1">
                 <?php } ?>
 
-         
+
                         <div class="entry-media">
-                            <?php 
+                            <?php
                             if ( ! get_post_format() ): // Standard
                                 get_template_part( 'formats/format', 'standard' );
                             elseif ( 'video' == get_post_format() ): // Video
@@ -49,7 +49,7 @@ $single_sidebar = get_post_meta( $post->ID, 'post_sidebar', true );
                             ?>
                         </div>
 
-                    <?php 
+                    <?php
                     // Ad Unit
                     if ( $ti_option['single_image_top_ad']['url'] == true || ! empty ( $ti_option['single_code_top_ad'] ) ) { ?>
                     <div class="advertisement">
@@ -60,7 +60,7 @@ $single_sidebar = get_post_meta( $post->ID, 'post_sidebar', true );
                             <a href="<?php echo $ti_option['single_image_top_ad_url']; ?>" rel="nofollow" target="_blank">
                                 <img src="<?php echo $single_banner_top['url']; ?>" width="<?php echo $single_banner_top['width']; ?>" height="<?php echo $single_banner_top['height']; ?>" alt="<?php _e( 'Advertisement', 'themetext' ); ?>" />
                             </a>
-                        <?php 
+                        <?php
                         // Code Ad
                         } elseif( $ti_option['single_code_top_ad'] == true ) {
                             echo $ti_option['single_code_top_ad'];
@@ -96,24 +96,31 @@ $single_sidebar = get_post_meta( $post->ID, 'post_sidebar', true );
                     if ( $ti_option['single_rating_box'] == 'rating_bottom' ) {
                         get_template_part( 'inc/single', 'rating' );
                     }
-                    
+
                     // Show/Hide tags list
                     if ( $ti_option['single_tags_list'] == 1 ) {
-                        the_tags('<div class="single-box tag-box clearfix"><h3 class="title">' . __( 'Tags', 'themetext' ) . '</h3>', '', '</div>'); 
+                        the_tags('<div class="single-box tag-box clearfix"><h3 class="title">' . __( 'Tags', 'themetext' ) . '</h3>', '', '</div>');
                     }
-                    
-                    // Show/Hide share links
-                    if ( $ti_option['single_social'] == 1 ) {
-                        get_template_part( 'inc/single', 'share' );
-                    }
-                    
-                    // Show/Hide author box
-                    if ( $ti_option['single_author'] == 1 ) {
-                        get_template_part( 'inc/author', 'box' );
-                    }
+
                     ?>
 
-                    <?php 
+                    <div class="social-section">
+                      <div class="social-section-icons">
+                        <div class="social-section-icons-share"><strong>SHARE</strong></div>
+                        <ul class="social-icons">
+                          <li><i class="fa fa-envelope"></i></li>
+                          <li><i class="fa fa-facebook"></i></li>
+                          <li><i class="fa fa-twitter"></i></li>
+                        </ul>
+                      </div>
+                      <div class="social-section-author">
+                        <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" rel="author" itemprop="url">
+                            <span itemprop="name"><strong>MORE FROM:</strong> <?php the_author_meta( 'display_name' ); ?></span>
+                        </a>
+                      </div>
+                    </div>
+
+                    <?php
                     // Ad Unit
                     if ( $ti_option['single_image_bottom_ad']['url'] == true || ! empty ( $ti_option['single_code_bottom_ad'] ) ) { ?>
                         <div class="single-box advertisement">
@@ -134,7 +141,7 @@ $single_sidebar = get_post_meta( $post->ID, 'post_sidebar', true );
                     <?php } ?>
 
 
-                    <?php  
+                    <?php
                     // Navigation
                     if ( $ti_option['single_nav_arrows'] == 1 ) { // Show/Hide Previous Post / Next Post Navigation
                         $prev_post = get_previous_post();
@@ -191,5 +198,5 @@ $single_sidebar = get_post_meta( $post->ID, 'post_sidebar', true );
         get_template_part( 'inc/slide', 'dock' );
     }
     ?>
-    
+
 <?php get_footer(); ?>
