@@ -8,6 +8,8 @@ jQuery(document).ready(function($) {
 
 	$('#header-container').height(h);
 
+	var m = h - 350;
+
 	/* Soundbar */
 
 	var playing = false;
@@ -30,7 +32,7 @@ jQuery(document).ready(function($) {
 	var fullPath = window.location.pathname + window.location.search + window.location.hash;
 
 	if (fullPath != "/") {
-		$('#header-container').css('margin-top', -620);
+		$('#header-container').css('margin-top', -m);
 	}
 	else {
 		$('.soundbar').hide();
@@ -46,7 +48,7 @@ jQuery(document).ready(function($) {
 
 			if (scrolled) {
 				scrolled = false;
-				$('#header-container').css('margin-top', -620);
+				$('#header-container').css('margin-top', -m);
 				$('html, body').animate({
 					scrollTop: 0
 				}, 0);

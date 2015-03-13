@@ -149,7 +149,7 @@
                     </li>
                     <li class="menu-item menu-item-type-taxonomy menu-item-object-category sub-menu-two-columns link-arrow">
                       <a href="<?php echo get_bloginfo('url') ?>/tag/playlists"><img src="<?php echo get_template_directory_uri() ?>/images/DaniCohen_icon_playlists.png" /></a><br/>
-                      <a href="<?php echo get_bloginfo('url') ?>/tag/playlists"><h3 <?php if(is_page('Playlists')) { ?>class="current"<?php } ?>>Playlists</h3></a>
+                      <a href="<?php echo get_bloginfo('url') ?>/tag/playlists"><h3 <?php if(is_tag('Playlists')) { ?>class="current"<?php } ?>>Playlists</h3></a>
                     </li>
                     <li class="menu-item menu-item-type-taxonomy menu-item-object-category sub-menu-two-columns link-arrow">
                       <a href="<?php echo get_permalink(get_page_by_title('About')); ?>"><img src="<?php echo get_template_directory_uri() ?>/images/DaniCohen_icon_about.png" /></a><br/>

@@ -18,7 +18,6 @@ html {font-size:100%;font-family:"azo-sans-web" !important;overflow-y:scroll;-we
 
 body {margin:0; font-family:"azo-sans-web" !important; font-size: 13px; line-height: 18px; color: black; }
 
-a:focus{outline:thin dotted}
 a:hover,a:active{outline:0}
 
 h1,h2,h3,h4,h5,h6{margin:0;padding:0}
@@ -143,7 +142,7 @@ object,embed,video{max-width:100%}
 svg:not(:root){overflow:hidden}
 figure{margin:0}
 
-.message,.logged-in-as,.comment-notes{display:block;padding:10px;margin-bottom:18px;color:#999;font-size:80%;font-weight:bold;text-align:center;line-height:18px;letter-spacing:.2em;border:1px dashed #ccc}
+.message,.logged-in-as,.comment-notes{display:block;margin-bottom:18px;color:#999;font-size:80%;font-weight:bold;text-align:left;line-height:18px;letter-spacing:.2em;}
 .message [class*="icomoon-"]{font-size:18px;position:relative;top:2px;left:5px;margin-right:15px}
 .error{border-color:#fb5766}
 .success{border-color:#83ba77}
@@ -347,6 +346,11 @@ input[type="submit"],
 	padding:14px 25px 12px;
 	border:3px solid #000;
 	position:relative;
+	font-weight: bold;
+	font-size: 13px;
+	line-height: 19px;
+	letter-spacing: 0.08em;
+	font-family: "azo-sans-web";
 }
 	#submit:hover,
 	.read-more:hover,
@@ -597,6 +601,11 @@ p a,
 .main-menu ul li:hover h3 {
 	background: white;
 	color: black;
+	opacity: 0.7;
+}
+
+.main-menu ul li:hover img {
+	opacity: 0.7;
 }
 
 h3.current {
@@ -1017,7 +1026,7 @@ html .main-menu > ul > li > .sub-menu {
 	margin-bottom:30px;
 }
 
-#content .entry-header .entry-title {  }
+#content .entry-header .entry-title { letter-spacing: 0.1em; }
 
 /*
  * Footer
@@ -1068,6 +1077,9 @@ html .main-menu > ul > li > .sub-menu {
 
 .sub-title {
 	display:block;
+	letter-spacing: 0.15em;
+	font-size: 20px;
+	line-height: 28px;
 }
 
 .format-bg {
@@ -1643,7 +1655,11 @@ figure:hover .image-caption {
 	.page-header .entry-meta {
 		font-size: 20px; font-weight: bold;
 		margin-bottom:15px;
-		text-align: center; color: black;
+		text-align: center; color: #888888;
+	}
+
+	.page-header .entry-meta .authormeta {
+		color: #888888;
 	}
 
 .page-header h1.entry-title{
@@ -1694,9 +1710,14 @@ figure:hover .image-caption {
 }
 	.single-box .title,
 	.comment-reply-title {
-		text-align:center;
-		margin-bottom:10px;
-		text-transform:none;
+		text-transform: uppercase;
+		padding-left: 0;
+		margin-bottom: 10px;
+		display: block;
+		text-align: left;
+		font-size: 20px;
+		line-height: 28px;
+		letter-spacing: 0.15em;
 	}
 
 /* Single Post & Page post */
@@ -2211,7 +2232,9 @@ figure:hover .image-caption {
 	}
 		.nav-next a,
 		.nav-previous a {
-			font-size:12px;
+			font-size:13px;
+			line-height: 19px;
+			letter-spacing: 0.04em;
 			display:block;
 			font-weight:bold;
 			text-decoration:none;
@@ -2556,7 +2579,7 @@ figure:hover .image-caption {
 }
 
 .entry-breakdown .item .score-line {
-	background:#ececec;
+	background:#ffcc0d;
 }
 
 .entry-breakdown .score-line,
@@ -2815,7 +2838,6 @@ html .col-1 .widget-area {border:none;}
  * Widgets
  */
 .sidebar .widget {
-	margin-bottom:30px;
 	padding-bottom:30px;
 	border-bottom: 1px solid black;
 }
@@ -3083,6 +3105,8 @@ html .col-1 .widget-area {border:none;}
 	width: 100%;
 	text-align: left;
 	letter-spacing: 0.04em;
+	font-size: 20px;
+	line-height: 19px;
 }
 
 .widget_categories ul {
@@ -4236,7 +4260,7 @@ and (max-device-width:1024px) {
 	}
 }
 
-h3 { font-family: "azo-sans-web" !important; font-weight: 700 !important; font-size: 20px; line-height: 20px !important; display: inline; padding: 5px 10px; }
+h3 { font-family: "azo-sans-web" !important; font-weight: 700 !important; font-size: 20px; line-height: 20px !important; display: inline; padding: 5px 10px; letter-spacing: 0.1em; }
 
 h2.entry-title{
 	font-family: "azo-sans-web" !important; font-weight: bold; font-size: 20px; text-transform: uppercase;
@@ -4251,7 +4275,7 @@ h2.entry-title{
 
 .authormeta{color: black;}
 
-a.read-more-link{text-transform: none; font-family: "azo-sans-web"; font-style: italic; font-size: 13px; line-height: 19px; color: #888888; margin-top: 5px; }
+a.read-more-link{text-transform: none; font-family: "azo-sans-web"; font-style: italic; font-size: 13px; line-height: 19px; color: #888888; margin-top: 5px; letter-spacing: 0.06em; }
 
 .top-post h2.entry-title{
 	font-size: 54px; text-align: center;
@@ -4382,18 +4406,21 @@ a.read-more-link{text-transform: none; font-family: "azo-sans-web"; font-style: 
 .mesh {
 	font-family: "azo-sans-web";
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 13px;
 	margin-top: 10px;
 	text-align: right;
+	line-height: 19px;
+	letter-spacing: 0.08em;
 }
 
 #tags-2 li a {
-	font-size: 11px;
+	font-size: 13px;
 	line-height: 18px;
+	letter-spacing: 0.04em;
 }
 
 #ti_latest_reviews-2 li a, #ti_latest_reviews-2 li span.total {
-	font-size: 11px;
+	font-size: 13px;
 	line-height: 18px;
 }
 
@@ -4402,6 +4429,7 @@ a.read-more-link{text-transform: none; font-family: "azo-sans-web"; font-style: 
 	margin-bottom: 20px;
 	display: block;
 	width: 100%;
+	letter-spacing: 0.04em;
 }
 
 .social-section {
@@ -4414,6 +4442,7 @@ a.read-more-link{text-transform: none; font-family: "azo-sans-web"; font-style: 
 .social-section-author {
 	float: right;
 	display: inline;
+	font-size: 13px; line-height: 19px; letter-spacing: 0.08em;
 }
 
 .social-section-icons {
@@ -4429,4 +4458,37 @@ a.read-more-link{text-transform: none; font-family: "azo-sans-web"; font-style: 
 	font-size: 13px;
 }
 
-.social-section-icons-share { float: left; margin-right: 7px; }
+.social-section-icons-share { float: left; margin-right: 7px; font-size: 13px; line-height: 19px; letter-spacing: 0.08em; }
+
+#text-3 {
+	padding-top: 10px;
+}
+
+.entry-header h4 {
+	font-size: 13px;
+	line-height: 19px;
+	letter-spacing: 0.08em;
+}
+
+#reply-title {
+	text-transform: uppercase;
+	padding-left: 0;
+	margin-bottom: 10px;
+	display: block;
+	text-align: left;
+	font-size: 20px;
+	line-height: 28px;
+	letter-spacing: 0.15em;
+}
+
+.tag-box .title {
+	font-size: 13px;
+	line-height: 19px;
+	letter-spacing: 0.04em;
+}
+
+.single-rating h4 {
+	font-size: 13px;
+	line-height: 18px;
+	font-weight: normal;
+}

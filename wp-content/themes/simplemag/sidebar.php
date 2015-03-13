@@ -30,7 +30,12 @@ if ( $ti_option['site_sidebar_fixed'] == true ) { $sidebar_fixed = ' sidebar-fix
               echo "<h3>Categories</h3>";
               echo "<ul>";
               foreach ($tags as $tag) {
-                echo '<li><a href="' . get_tag_link( $tag->term_id ) . '" title="' . sprintf( __( "View all posts in %s" ), $tag->name ) . '" ' . '>' . $tag->name.'</a></li>';
+
+
+                if(get_field('show_in_sidebar', $tag)) {
+                  echo '<li><a href="' . get_tag_link( $tag->term_id ) . '" title="' . sprintf( __( "View all posts in %s" ), $tag->name ) . '" ' . '>' . $tag->name.'</a></li>';
+                }
+
               }
               echo "</ul>";
             }
