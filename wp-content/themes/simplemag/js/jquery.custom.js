@@ -1,3 +1,41 @@
+Track = function (trackId){
+        var currentTrack = "";
+
+        SC.stream("http://api.soundcloud.com/tracks/" + trackId, function(sound){
+            currentTrack = sound;
+        });
+
+        this.play = function() {
+            currentTrack.play();
+        };
+
+        this.pause = function() {
+            currentTrack.pause();
+        };
+
+        this.stop = function() {
+            currentTrack.stop();
+        };
+    };
+
+    Rotation = function(tracks) {
+        var currentTrack = tracks[0];
+
+        this.currentTrack = function () {
+            return currentTrack;
+        };
+
+        this.nextTrack = function () {
+            var currentIndex = tracks.indexOf(currentTrack);
+            var nextTrackIndex = currentIndex + 1;
+            var nextTrackId = tracks[nextTrackIndex];
+            currentTrack = nextTrackId;
+            return currentTrack
+        };
+    };
+
+
+
 /* Custom Front-End jQuery scripts */
 jQuery(document).ready(function($) {
 
@@ -14,8 +52,20 @@ jQuery(document).ready(function($) {
 
 	var playing = false;
 
+	SC.get("/groups/55517/tracks", {limit: 1}, function(tracks){
+  	// alert("Latest track: " + tracks[0].title);
+		console.log(tracks[0]);
+		SC.sound = tracks[0];
+	});
+
 	SC.stream("/tracks/293", function(sound){
-		SC.sound = sound;
+		// SC.sound = sound;
+		// console.log(sound);
+	});
+
+	SC.stream("/tracks/" + trackId, { onfinish: function(){
+		console.log('track finished'); }}, function(sound){
+			currentTrack = sound;
 	});
 
 	$('.play').click(function() {

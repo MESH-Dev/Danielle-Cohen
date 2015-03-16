@@ -60,13 +60,14 @@ global $ti_option;
               <div class="grid-4">
                 <div class="controls">
                   <div class="backward control">
-                    <i class="fa fa-backward"></i>
+                    <i class="fa fa-backward" id="prev"></i>
                   </div>
                   <div class="play control">
-                    <i class="fa fa-play"></i>
+                    <i class="fa fa-play" id="play"></i>
+                    <i class="fa fa-pause" id="pause" style="display:none;"></i>
                   </div>
                   <div class="forward control">
-                    <i class="fa fa-forward"></i>
+                    <i class="fa fa-forward" id="next"></i>
                   </div>
                 </div>
               </div>
