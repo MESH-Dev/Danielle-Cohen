@@ -54,7 +54,8 @@ global $ti_option;
             <div class="grids">
               <div class="grid-4">
                 <div class="artist-info">
-                  <span class="artist-info-song">Song Name</span> | <span class="artist-info-artist">Artist</span>
+                  <span class="artist-info-song trackTitle"></span>
+                   <!-- | <span class="artist-info-artist artistTitle">Artist</span> -->
                 </div>
               </div>
               <div class="grid-4">

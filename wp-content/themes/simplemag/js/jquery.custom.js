@@ -1,38 +1,61 @@
 Track = function (trackId){
-        var currentTrack = "";
+    var currentTrack = "";
 
-        SC.stream("http://api.soundcloud.com/tracks/" + trackId, function(sound){
-            currentTrack = sound;
-        });
+    SC.stream("http://api.soundcloud.com/tracks/" + trackId, function(sound){
+        currentTrack = sound;
+    });
 
-        this.play = function() {
-            currentTrack.play();
-        };
+    this.play = function() {
+        currentTrack.play();
 
-        this.pause = function() {
-            currentTrack.pause();
-        };
-
-        this.stop = function() {
-            currentTrack.stop();
-        };
     };
 
-    Rotation = function(tracks) {
-        var currentTrack = tracks[0];
+    this.pause = function() {
+        currentTrack.pause();
 
-        this.currentTrack = function () {
-            return currentTrack;
-        };
-
-        this.nextTrack = function () {
-            var currentIndex = tracks.indexOf(currentTrack);
-            var nextTrackIndex = currentIndex + 1;
-            var nextTrackId = tracks[nextTrackIndex];
-            currentTrack = nextTrackId;
-            return currentTrack
-        };
     };
+
+    this.stop = function() {
+        currentTrack.stop();
+
+    };
+};
+
+Rotation = function(tracks) {
+    var currentTrack = tracks[0];
+
+    this.currentTrack = function () {
+        return currentTrack;
+    };
+
+    this.nextTrack = function () {
+        var currentIndex = tracks.indexOf(currentTrack);
+
+        if (currentIndex == (tracks.length - 1)) {
+          var nextTrackIndex = 0;
+        } else {
+          var nextTrackIndex = currentIndex + 1;
+        }
+
+        var nextTrackId = tracks[nextTrackIndex];
+        currentTrack = nextTrackId;
+        return currentTrack
+    };
+
+    this.prevTrack = function() {
+      var currentIndex = tracks.indexOf(currentTrack);
+
+      if (currentIndex == 0) {
+        var prevTrackIndex = tracks.length - 1;
+      } else {
+        var prevTrackIndex = currentIndex - 1;
+      }
+
+      var prevTrackId = tracks[prevTrackIndex];
+      currentTrack = prevTrackId;
+      return currentTrack;
+    }
+};
 
 
 
@@ -50,34 +73,95 @@ jQuery(document).ready(function($) {
 
 	/* Soundbar */
 
-	var playing = false;
+	// var playing = false;
+  //
+	// SC.stream("/tracks/75921125", function(sound){
+	// 	SC.sound = sound;
+	// });
+  //
+	// $('.play').click(function() {
+	// 	if (playing == false) {
+	// 		SC.sound.play();
+	// 		playing = true;
+	// 	} else {
+	// 		SC.sound.pause();
+	// 		playing = false;
+	// 	}
+	// 	$(this).find('i').toggleClass('fa-play fa-pause')
+	// });
 
-	SC.get("/groups/55517/tracks", {limit: 1}, function(tracks){
-  	// alert("Latest track: " + tracks[0].title);
-		console.log(tracks[0]);
-		SC.sound = tracks[0];
-	});
+  var playing = false;
+  var first = true;
 
-	SC.stream("/tracks/293", function(sound){
-		// SC.sound = sound;
-		// console.log(sound);
-	});
+  var rotation;
+  var currentTrack;
+  var currentPlayingTrack;
 
-	SC.stream("/tracks/" + trackId, { onfinish: function(){
-		console.log('track finished'); }}, function(sound){
-			currentTrack = sound;
-	});
+  var songs;
 
-	$('.play').click(function() {
-		if (playing == false) {
-			SC.sound.play();
-			playing = true;
-		} else {
-			SC.sound.pause();
-			playing = false;
-		}
-		$(this).find('i').toggleClass('fa-play fa-pause')
-	});
+  SC.get("/groups/34324/tracks", function(tracks){
+
+    songs = tracks;
+
+    rotation = new Rotation(tracks);
+    currentTrack = rotation.currentTrack();
+    currentPlayingTrack = new Track(currentTrack.id);
+
+    if (first == true) {
+      $('.trackTitle').html(currentTrack.title);
+      first = false;
+    }
+  });
+
+  // var songs = [{"title":"Sad Trombone","song_url":"https://soundcloud.com/sheckylovejoy/sad-trombone","soundcloud_id":"18321000"},{"title":"AraabMUZIK - \"Beauty\"","song_url":"    https://soundcloud.com/selftitledmag/araabmuzik-beauty","soundcloud_id":"79408289"}]
+  // console.log(songs);
+
+
+  $('#play').on('click', function(event){
+      playing = true;
+      currentPlayingTrack.play();
+      $('.trackTitle').html(currentTrack.title);
+      $('#pause').show();
+      $('#play').hide();
+  });
+
+  $('#pause').on('click', function(event){
+      playing = false;
+      currentPlayingTrack.pause();
+      $('#pause').hide();
+      $('#play').show();
+  });
+
+  $('#stop').on('click', function(event){
+      playing = false;
+      currentPlayingTrack.stop();
+      $('#pause').hide();
+      $('#play').show();
+  });
+
+
+  $('#next').on('click', function(event){
+      currentPlayingTrack.stop();
+      currentTrack = rotation.nextTrack();
+      currentPlayingTrack = new Track(currentTrack.id);
+      if (playing == true) {
+        currentPlayingTrack.play();
+      }
+      console.log(currentTrack);
+
+      $('.trackTitle').html(currentTrack.title);
+      $('.artistTitle').html(currentTrack.artist);
+  });
+
+  $('#prev').on('click', function(event){
+      currentPlayingTrack.stop();
+      currentTrack = rotation.prevTrack();
+      currentPlayingTrack = new Track(currentTrack.id);
+      if (playing == true) {
+        currentPlayingTrack.play();
+      }
+      $('.trackTitle').html(currentTrack.title);
+  });
 
 	var fullPath = window.location.pathname + window.location.search + window.location.hash;
 
