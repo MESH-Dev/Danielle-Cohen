@@ -4492,3 +4492,6 @@ a.read-more-link{text-transform: none; font-family: "azo-sans-web"; font-style: 
 	line-height: 18px;
 	font-weight: normal;
 }
+
+.comment-author { padding-top: 30px; }
+.comment-list .comment-meta { margin-bottom: 0px !important; }
