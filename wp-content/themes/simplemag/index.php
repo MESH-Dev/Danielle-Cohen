@@ -79,7 +79,7 @@ global $ti_option;
                                     <a href="<?php the_permalink(); ?>">
                                         <?php
                                         if ( has_post_thumbnail() ) {
-                                            the_post_thumbnail( 'rectangle-size' );
+                                            the_post_thumbnail();
                                         } elseif( first_post_image() ) { // Set the first image from the editor
                                             echo '<img src="' . first_post_image() . '" class="wp-post-image" alt="' . get_the_title() . '" />';
                                         } ?>
